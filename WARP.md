@@ -4,61 +4,117 @@ This file provides guidance to WARP (warp.dev) when working with code in this re
 
 ## Project Overview
 
-This is a collection of Playwright test scripts organized by target application/website. The repository contains browser automation tests written in both JavaScript and TypeScript.
+This repository contains Playwright test scripts in multiple languages (Python, JavaScript, TypeScript) for browser automation testing. The primary target is testing https://the-internet.herokuapp.com demo site.
 
 ## Repository Structure
 
-- `aws/` - Playwright scripts for AWS-related testing (currently placeholder files)
-- `the-internet/` - Test scripts targeting https://the-internet.herokuapp.com
-  - Scripts use naming convention: `AE##_<TestName>_<metadata>.{js,ts}`
-  - Example: `AE06_CheckBox.js` for checkbox interaction tests
+- **test-example/**: Python-based pytest-playwright examples from official Playwright documentation
+- **the-internet/**: Scripts testing various controls on the-internet.herokuapp.com, supporting multiple languages (Python, JavaScript, TypeScript)
 
-## Commands
+Each subdirectory maintains its own virtual environment and dependencies.
 
-Since this repository does not have a package.json or configuration files yet, tests must be run using a globally installed Playwright or a parent project's Playwright installation.
+## Development Setup
 
-**Run a specific test:**
+### Python Scripts (test-example/ and the-internet/)
+
+**Initial setup:**
 ```bash
-npx playwright test the-internet/AE06_CheckBox.js
+cd test-example  # or cd the-internet
+python -m venv .venv
+source .venv/bin/activate
+uv pip install pytest pytest-playwright playwright -U
+playwright install  # Downloads Chromium, Firefox, WebKit, FFMPEG to ~/Library/Caches/ms-playwright/
 ```
 
-**Run tests in a directory:**
+**Cleanup:**
 ```bash
-npx playwright test the-internet/
+deactivate
+rm -rf .venv .pytest_cache __pycache__
 ```
 
-**Run tests in headed mode (see browser):**
+### JavaScript/TypeScript Scripts (the-internet/)
+
+These use Node.js and @playwright/test framework (note the test file in the-internet/ currently doesn't have a package.json).
+
+## Running Tests
+
+### Python Tests with pytest
 ```bash
-npx playwright test --headed the-internet/AE06_CheckBox.js
+cd test-example
+source .venv/bin/activate
+pytest test_example.py --browser chromium --headed
 ```
 
-**Run tests in debug mode:**
+### Python Scripts (standalone)
 ```bash
-npx playwright test --debug the-internet/AE06_CheckBox.js
+cd the-internet
+source .venv/bin/activate
+pytest flood-06-checkboxes.py --browser chromium --headed
+# Or run directly:
+python flood-06-checkboxes.py
 ```
 
-## Development Guidelines
+### Run specific test function
+```bash
+pytest test_example.py::test_has_title --browser chromium --headed
+```
 
-### File Naming
-- Test files follow the pattern: `AE##_<DescriptiveName>_<optionalMetadata>.{js,ts}`
-- Use descriptive names that indicate what is being tested
-- The `AE##` prefix appears to be a numbering system for organizing tests
+## Key Technical Details
 
-### Test Structure
-- Tests use Playwright's test runner: `const { test, expect } = require('@playwright/test')`
-- Each test file should focus on a specific feature or interaction
-- Use locators with `page.getByRole()` or `page.locator()` for element selection
-- Prefer semantic selectors (role, text) over CSS/XPath when possible
+### Python Version
+- Requires Python >=3.12 (per user preference for TensorFlow compatibility)
+- test-example/pyproject.toml specifies `>=3.13` but should work with 3.12
 
-### Adding New Tests
-When creating new test files:
-1. Place them in the appropriate directory (`aws/` or `the-internet/`)
-2. Follow the `AE##_` naming convention
-3. Use either `.js` or `.ts` extension (both are supported)
-4. Import Playwright test utilities at the top
-5. Target https://the-internet.herokuapp.com for `the-internet/` directory tests
+### Dependencies
+- **Python**: `playwright>=1.55.0`, `pytest-playwright>=0.6.0`
+- Managed via pyproject.toml in test-example/
+- Use `uv pip` for faster installation
 
-### TypeScript vs JavaScript
-- Both `.js` and `.ts` files are used in this repository
-- For JavaScript files, use `// @ts-check` comment at the top for type checking
-- Maintain consistency within each directory when possible
+### Test Configuration
+- **conftest.py** enables pytest-playwright plugin: `pytest_plugins = ["pytest_playwright"]`
+- Browser binaries cached at: `~/Library/Caches/ms-playwright/`
+
+## Code Generation
+
+Scripts in this repository were generated using:
+- Playwright Codegen: `playwright codegen https://the-internet.herokuapp.com`
+- AI assistance (Perplexity, etc.) with manual editing based on official Playwright documentation
+
+## Multi-Language Support
+
+This project intentionally includes examples in:
+- **Python** with sync_playwright and pytest-playwright
+- **JavaScript** using @playwright/test
+- **TypeScript** (placeholder files exist)
+
+When adding new tests, match the language pattern of the directory you're working in.
+
+## Common Patterns
+
+### Python Sync API
+```python
+from playwright.sync_api import sync_playwright, Page, expect
+
+def test_example(page: Page):  # pytest-playwright fixture
+    page.goto("https://example.com")
+    expect(page).to_have_title(re.compile("Example"))
+```
+
+### Standalone Python Script
+```python
+with sync_playwright() as p:
+    browser = p.chromium.launch(headless=False)
+    page = browser.new_page()
+    # ... test logic
+    browser.close()
+```
+
+### JavaScript/TypeScript
+```javascript
+const { test, expect } = require('@playwright/test');
+
+test('description', async ({ page }) => {
+    await page.goto('https://example.com');
+    await expect(page.getByRole('heading')).toBeVisible();
+});
+```

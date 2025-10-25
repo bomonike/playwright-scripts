@@ -25,4 +25,10 @@ works from VSCode
 
 ## Extensions
 
-https://www.perplexity.ai/search/write-an-app-that-navigates-th-GQK4OCCATHGFI2H9V7EhHg#0
+Scripts here were created with assist from AI, such as:
+https://www.perplexity.ai/search/write-python-playwright-script-1JU1SXFJQJW4hly9UZ_n6Q#0
+
+> "write python playwright scripts to exercise all controls behind each link at https://the-internet.herokuapp.com/"
+
+AI-generated code were edited based on PlayWright documentation at
+https://learn.microsoft.com/en-us/azure/app-testing/
