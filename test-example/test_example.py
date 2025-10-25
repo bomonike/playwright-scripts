@@ -10,6 +10,10 @@ USAGE:
     # NOTE: cached in /Users/johndoe/Library/Caches/ms-playwright/ to run Playwright tests.
 
     pytest test_example.py --browser chromium --headed
+
+AFTER RUN:
+    deactivate
+    rm -rf .venv .pytest_cache __pycache__
 """
 
 import re
