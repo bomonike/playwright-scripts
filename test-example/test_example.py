@@ -1,5 +1,16 @@
 
 # from https://playwright.dev/python/docs/writing-tests
+"""
+USAGE:
+    cd test-example
+    python -m venv .venv
+    source .venv/bin/activate
+    uv pip install pytest pytest-playwright playwright -U
+    playwright install  #  browser binaries: Chromium, Firefox, WebKit, FFMPEG
+    # NOTE: cached in /Users/johndoe/Library/Caches/ms-playwright/ to run Playwright tests.
+
+    pytest test_example.py --browser chromium --headed
+"""
 
 import re
 from playwright.sync_api import Page, expect
