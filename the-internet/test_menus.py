@@ -24,7 +24,8 @@ USAGE:
     # NOTE: cached in /Users/johndoe/Library/Caches/ms-playwright/ to run Playwright tests.
 
     pytest test_menus.py --browser chromium --headed
-
+    deactivate
+    rm -rf .venv .pytest_cache __pycache__
 """
 
 __last_change__ = "25-10-29 v004 + fix urls :test_menus.py"
