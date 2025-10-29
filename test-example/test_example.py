@@ -1,7 +1,7 @@
 
 """test_example.py here
 
-at https://github.com/bomonike/playwright-scripts/blob/main/test_example/test_example.py
+at https://github.com/bomonike/playwright-scripts/blob/main/test-example/test_example.py
 
 Run the sample test code posted at https://playwright.dev/python/docs/writing-tests
 
@@ -19,7 +19,7 @@ AFTER RUN:
     deactivate
     rm -rf .venv .pytest_cache __pycache__
 """
-__last_change__ = "25-10-29 v002 + fix top docs :test_example.py"
+__last_change__ = "25-10-29 v003 + fix url at top docs :test_example.py"
 __status__ = "working on macOS but browser disappears."
 
 import re
