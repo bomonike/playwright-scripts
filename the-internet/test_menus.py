@@ -9,10 +9,13 @@
 
 """test_menus.py here
 
+at https://github.com/bomonike/playwright-scripts/blob/main/the-internet/test_menus.py
+
 Test script for visiting all example links on the-internet.herokuapp.com.
+Described at https://wilsonmar.github.io/flood-the-internet/
 
 USAGE:
-    git clone https://wilsonmar.github.io/flood-the-internet/ --depth 1
+    git clone https://github.com/bomonike/playwright-scripts --depth 1
     cd flood-the-internet/the-internet
     python -m venv .venv
     source .venv/bin/activate
@@ -24,8 +27,8 @@ USAGE:
 
 """
 
-__last_change__ = "25-10-29 v003 + res :test_menus.py"
-__status__ = "working on macOS."
+__last_change__ = "25-10-29 v004 + fix urls :test_menus.py"
+__status__ = "working on macOS but browser disappears."
 
 from playwright.sync_api import Page, expect
 
