@@ -1,20 +1,26 @@
 
-# from https://playwright.dev/python/docs/writing-tests
-"""
+"""test_example.py here
+
+at https://github.com/bomonike/playwright-scripts/blob/main/test_example/test_example.py
+
+Run the sample test code posted at https://playwright.dev/python/docs/writing-tests
+
 USAGE:
     cd test-example
     python -m venv .venv
     source .venv/bin/activate
     uv pip install pytest pytest-playwright playwright -U
-    playwright install  #  browser binaries: Chromium, Firefox, WebKit, FFMPEG
+    playwright install chromium  #  browser binaries: Chromium, Firefox, WebKit, FFMPEG
     # NOTE: cached in /Users/johndoe/Library/Caches/ms-playwright/ to run Playwright tests.
 
-    pytest test_example.py --browser chromium --headed
+    pytest test_example.py --browser chromium --headed --debug
 
 AFTER RUN:
     deactivate
     rm -rf .venv .pytest_cache __pycache__
 """
+__last_change__ = "25-10-29 v002 + fix top docs :test_example.py"
+__status__ = "working on macOS but browser disappears."
 
 import re
 from playwright.sync_api import Page, expect
