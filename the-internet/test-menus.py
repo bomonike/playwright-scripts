@@ -7,9 +7,9 @@
 # ]
 # ///
 
-"""test_menus.py here
+"""test-menus.py here
 
-at https://github.com/bomonike/playwright-scripts/blob/main/the-internet/test_menus.py
+at https://github.com/bomonike/playwright-scripts/blob/main/the-internet/test-menus.py
 
 Test script for visiting all example links on the-internet.herokuapp.com.
 Described at https://wilsonmar.github.io/flood-the-internet/
@@ -23,12 +23,12 @@ USAGE:
     playwright install  #  browser binaries: Chromium, Firefox, WebKit, FFMPEG
     # NOTE: cached in /Users/johndoe/Library/Caches/ms-playwright/ to run Playwright tests.
 
-    pytest test_menus.py --browser chromium --headed
+    pytest test-menus.py --browser chromium --headed
     deactivate
     rm -rf .venv .pytest_cache __pycache__
 """
 
-__last_change__ = "25-10-29 v004 + fix urls :test_menus.py"
+__last_change__ = "25-10-30 v005 + chg name test-menus :test-menus.py"
 __status__ = "working on macOS but browser disappears."
 
 from playwright.sync_api import Page, expect
